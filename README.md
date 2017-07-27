@@ -5,11 +5,13 @@ Note: This is written for a fresh VPS with Ubuntu 16.04 x64
 
 * Log into VPS via putty as root/sudoer
 
-* Install curl & update `sudo apt-get update && sudo apt-get install curl avahi-daemon`
+* Install updates `sudo apt-get update && sudo apt-get upgrade`
 
-* Enable repository `echo deb https://downloads.plex.tv/repo/deb/ public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list && curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -`
+* wget plex `wget https://downloads.plex.tv/plex-media-server/1.7.5.4035-313f93718/plexmediaserver_1.7.5.4035-313f93718_amd64.deb`
 
-* Install Plex `sudo apt-get update && sudo apt-get install plexmediaserver`
+* Install Plex `sudo dpkg -i plexmediaserver*.deb`
+
+* Add plex as a service `sudo systemctl enable plexmediaserver.service && sudo systemctl start plexmediaserver.service`
 
 * Open port 32400 `sudo iptables -A INPUT -p tcp -d 0/0 -s 0/0 --dport 32400 -j ACCEPT`
 
@@ -23,7 +25,3 @@ Note: This is written for a fresh VPS with Ubuntu 16.04 x64
 Other guides
 
 https://community.time4vps.eu/discussion/123/plex-how-to-install-plex-media-center-on-ubuntu
-
-
-
-
